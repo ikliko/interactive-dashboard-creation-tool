@@ -95,6 +95,29 @@ marketers, to easily design and customize dashboards for data visualization and 
 - Implement a password recovery mechanism via email.
 
 
+# Tasks
+
+## Users
+### Register
+#### Backend
+#### Frontend
+
+### Login
+#### Backend
+#### Frontend
+
+### Forgotten password
+#### Backend
+#### Frontend
+
+### Email validation
+#### Backend
+#### Frontend
+
+
+
 # Start project
 
 Backend
+
+
