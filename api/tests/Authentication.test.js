@@ -29,7 +29,7 @@ describe('API Tests', () => {
         it('Login user', async () => {
             const email = 'test@email.com'
 
-            const response = await request.post('/users').send({
+            const response = await request.post('/auth').send({
                 email,
                 password: 'test123'
             })
@@ -44,7 +44,7 @@ describe('API Tests', () => {
 
         it('Forgotten password', async () => {
             const email = 'test@email.com'
-            const response = await request.post('/password/forgotten').send({email})
+            const response = await request.post('/auth/forgotten').send({email})
 
             expect(response.status).to.equal(200)
             expect(response.type).to.equal('application/json')
@@ -53,9 +53,18 @@ describe('API Tests', () => {
         })
 
         it('Reset password', async () => {
-            const response = await request.post('/users').send({
+            const response = await request.post('/auth/reset').send({
                 code: '1234',
                 password: 'test123'
+            })
+
+            expect(response.status).to.not.equal(404)
+            expect(response.type).to.equal('application/json')
+        })
+
+        it('Email verification', async () => {
+            const response = await request.post('/auth/verify').send({
+                code: '1234',
             })
 
             expect(response.status).to.not.equal(404)
