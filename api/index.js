@@ -1,18 +1,47 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const http = require('http')
+const socketIo = require('socket.io')
+const cors = require('cors')
 
 const routes = require('./routes')
-const {isAuth, authentication} = require('./middlewares/authMiddleware')
+const {authentication} = require('./middlewares/authMiddleware')
 
 const PORT = process.env.PORT || 3030
 
 const app = express()
+const server = http.createServer(app)
+const io = socketIo(server)
 
+app.use(cors())
 app.use(express.json())
 app.use(authentication)
 app.use(routes)
 
-app.get('/test', isAuth, (req, res) => res.send({ok: true}))
+io.on('connection', (socket) => {
+    console.log('A user connected')
+    const randomNum = (min, max) => Math.floor(Math.random() * (max - min) + min)
+
+    socket.emit('priceUpdate', {
+        pairs: {
+            EURUSD: +`1.${randomNum(1234, 7896)}`
+        }
+    })
+
+    setInterval(() => {
+        const decimals = randomNum(1234, 7896)
+
+        socket.emit('priceUpdate', {
+            pairs: {
+                EURUSD: +`1.${decimals}`
+            }
+        })
+    }, 1000)
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected')
+    })
+})
 
 app.all('*', (req, res) => {
     res.status(404).send({ok: false})
@@ -21,5 +50,7 @@ app.all('*', (req, res) => {
 mongoose.set('strictQuery', true)
 mongoose.connect('mongodb://127.0.0.1/dashboard-tool')
 
-const server = app.listen(PORT, () => `Server is listening on port ${PORT}...`)
-module.exports = server
+const devServer = app.listen(PORT, () => `Server is listening on port ${PORT}...`)
+const serverIo = server.listen(3031, () => `Server is listening on port ${3031}...`)
+
+module.exports = devServer

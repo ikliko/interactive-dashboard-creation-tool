@@ -29,6 +29,7 @@ exports.authentication = async (req, res, next) => {
 }
 
 exports.isAuth = async (req, res, next) => {
+    console.log(123213)
     if (!req.user) {
         res.status(401).send({
             error: {

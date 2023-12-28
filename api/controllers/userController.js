@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const authService = require('../services/authService')
 
-router.post('/', async (req, res) => {
+router.post('/users', async (req, res) => {
     const {email, password} = req.body
 
     if (!email || !password) {
@@ -26,9 +26,12 @@ router.post('/', async (req, res) => {
 router.post('/auth', async (req, res) => {
     const {email, password} = req.body
 
-    const payload = await authService.login(email, password)
-
-    res.send(payload)
+    try {
+        const payload = await authService.login(email, password)
+        res.send(payload)
+    } catch (e) {
+        res.status(400).send({error: e.message})
+    }
 })
 
 router.all('/logout', (req, res) => {
