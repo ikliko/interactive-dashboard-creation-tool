@@ -1,0 +1,13 @@
+{
+  "name": "interactive-dashboard-creation-tool",
+  "version": "1.0.0",
+  "description": "Develop a web-based application that enables the creation of interactive dashboards with\r drag-and-drop modules. The tool should allow users, especially non-technical team members like\r marketers, to easily design and customize dashboards for data visualization and analysis.",
+  "main": "index.js",
+  "scripts": {
+    "api:test": "npm test --prefix ./api",
+    "api:start": "npm start --prefix ./api"
+  },
+  "keywords": [],
+  "author": "Kliko",
+  "license": "ISC"
+}
