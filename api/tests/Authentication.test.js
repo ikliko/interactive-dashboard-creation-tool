@@ -7,7 +7,7 @@ const request = supertest(app)
 
 describe('API Tests', () => {
     describe('Users', () => {
-        it.only('Register user', async () => {
+        it('Register user', async () => {
             const user = {
                 email: `test@email.com`,
                 password: 'test123'
