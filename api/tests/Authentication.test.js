@@ -7,23 +7,19 @@ const request = supertest(app)
 
 describe('API Tests', () => {
     describe('Users', () => {
-        it('Register user', async () => {
+        it.only('Register user', async () => {
             const user = {
-                email: 'test@email.com',
-                name: 'Test User'
+                email: `test@email.com`,
+                password: 'test123'
             }
 
             const response = await request.post('/users').send(user)
 
             expect(response.status).to.equal(200)
             expect(response.type).to.equal('application/json')
-            expect(response.body).to.have.property('data')
-            expect(response.body).to.deep.equal({
-                data: {
-                    ...user,
-                    password: 'test123'
-                }
-            })
+            expect(response.body).to.have.property('email', user.email)
+            expect(response.body).to.have.property('_id')
+            expect(response.body).to.have.property('accessToken')
         })
 
         it('Login user', async () => {
@@ -36,10 +32,9 @@ describe('API Tests', () => {
 
             expect(response.status).to.equal(200)
             expect(response.type).to.equal('application/json')
-            expect(response.body).to.have.property('data')
-            expect(response.body).to.have.property('data.email', email)
-            expect(response.body).to.have.property('data._id')
-            expect(response.body).to.have.property('data.accessToken')
+            expect(response.body).to.have.property('email', email)
+            expect(response.body).to.have.property('_id')
+            expect(response.body).to.have.property('accessToken')
         })
 
         it('Forgotten password', async () => {

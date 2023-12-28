@@ -1,0 +1,2 @@
+exports.SECRET = 'c322f1ce804bd6d4b708a7486788f47822f108f7';
+exports.CRYPT_SALT = 10;
