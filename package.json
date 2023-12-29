@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "api:test": "npm test --prefix ./api",
-    "api:start": "npm start --prefix ./api"
+    "api:start": "npm start --prefix ./api",
+    "ui:start": "npm start --prefix ./ui"
   },
   "keywords": [],
   "author": "Kliko",
