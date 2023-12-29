@@ -22,9 +22,35 @@ io.on('connection', (socket) => {
     console.log('A user connected')
     const randomNum = (min, max) => Math.floor(Math.random() * (max - min) + min)
 
+    const displayTime = now => {
+        const h = `0${now.getHours()}`.slice(-2)
+        const m = `0${now.getMinutes()}`.slice(-2)
+        const s = `0${now.getSeconds()}`.slice(-2)
+
+        return `${h}:${m}:${s}`
+    }
+
+    const makePrice = () => ({
+        open: +`1.${randomNum(1234, 7896)}`,
+        highest: +`1.${randomNum(1234, 7896)}`,
+        lowest: +`1.${randomNum(1234, 7896)}`,
+        close: +`1.${randomNum(1234, 7896)}`,
+        time: new Date().getTime()
+    })
+
+    let time = new Date().getTime()
+    socket.emit('priceHistory', {
+        pairs: {
+            EURUSD: Array.from(Array(20)).map(p => ({
+                ...makePrice(),
+                time: time -= 1000
+            })).reverse()
+        }
+    })
+
     socket.emit('priceUpdate', {
         pairs: {
-            EURUSD: +`1.${randomNum(1234, 7896)}`
+            EURUSD: makePrice()
         }
     })
 
@@ -33,7 +59,7 @@ io.on('connection', (socket) => {
 
         socket.emit('priceUpdate', {
             pairs: {
-                EURUSD: +`1.${decimals}`
+                EURUSD: makePrice()
             }
         })
     }, 1000)
