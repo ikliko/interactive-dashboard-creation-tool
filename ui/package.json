@@ -11,6 +11,7 @@
     "apexcharts": "^3.45.1",
     "axios": "^1.6.2",
     "chart.js": "^4.4.1",
+    "interactive-dashboard-creation-tool": "file:..",
     "nodemon": "^3.0.2",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

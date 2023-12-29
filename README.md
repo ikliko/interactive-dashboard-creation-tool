@@ -94,30 +94,26 @@ marketers, to easily design and customize dashboards for data visualization and 
 ### Password Recovery:
 - Implement a password recovery mechanism via email.
 
-
-# Tasks
-
-## Users
-### Register
-#### Backend
-#### Frontend
-
-### Login
-#### Backend
-#### Frontend
-
-### Forgotten password
-#### Backend
-#### Frontend
-
-### Email validation
-#### Backend
-#### Frontend
-
-
-
 # Start project
 
-Backend
+open root directory in terminal. Run The following commands to init the projects
 
+```
+npm run api:init
+```
 
+```
+npm run ui:init
+```
+
+### To start the projects in the terminal 
+
+#### run the following command to start the API
+```
+npm run api:start
+```
+
+#### in new terminal run this command to start the UI 
+```
+npm run ui:start
+```

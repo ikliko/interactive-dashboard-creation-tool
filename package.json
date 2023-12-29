@@ -6,7 +6,10 @@
   "scripts": {
     "api:test": "npm test --prefix ./api",
     "api:start": "npm start --prefix ./api",
-    "ui:start": "npm start --prefix ./ui"
+    "api:init": "npm i --prefix ./api",
+    "ui:start": "npm start --prefix ./ui",
+    "ui:test": "npm test --prefix ./ui",
+    "ui:init": "npm i --prefix ./ui"
   },
   "keywords": [],
   "author": "Kliko",
