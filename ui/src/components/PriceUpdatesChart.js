@@ -11,6 +11,7 @@ const PriceUpdatesChart = ({ candlestickData, latestPrice }) => {
     const options = {
         chart: {
             type: 'candlestick',
+            foreColor: '#fff'
         },
         xaxis: {
             type: 'datetime',
