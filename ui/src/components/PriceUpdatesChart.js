@@ -21,6 +21,9 @@ const PriceUpdatesChart = ({ candlestickData, latestPrice }) => {
                 enabled: true,
             },
         },
+        theme: {
+            mode: 'dark'
+        }
     };
 
     useEffect(() => {
